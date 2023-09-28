@@ -1,0 +1,26 @@
+* {
+  box-sizing:border-box
+}
+
+body {
+    background-color: #b49c9c;
+  background-image: -webkit-linear-gradient(150deg, #34ADFF 35%, #4CBFFF 35%);
+  min-height: 400px;
+    font-family: 'Super Magic', sans-serif;
+    color: #db8522;
+    text-shadow: 4px 3px 0px #ac5712, 
+               9px 8px 0px rgba(0,0,0,0.15);
+    margin: 0;
+}
+
+h1 {
+  font-size: 5rem;
+  text-align: center;
+  margin: 0;
+  padding: .5rem;
+}
+
+@font-face {
+  font-family: 'Super Magic';
+  src: url(src/assets/font/Super%20Magic.ttf) format('truetype');
+}

@@ -1,0 +1,41 @@
+button {
+    background-color: #db8522;
+    border: none;
+    color: white;
+    font-family: 'Super Magic', sans-serif;
+    padding: .3em 1em;
+    margin: .3em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 15%;
+    box-shadow: 3px 2px 0px #86440eaf;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ac5712;
+    color: white;
+    cursor: pointer;
+}
+
+span {
+    font-size: 1.5em;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-weight: bold;
+    font-size: medium;
+    text-shadow: 2px 1px 0px #0004;
+}
+
+.transpose-container {
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.transpose-control {
+    display: inline-block;
+    margin: 0 auto;
+}
