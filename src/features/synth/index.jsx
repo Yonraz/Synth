@@ -2,6 +2,7 @@
 import Keyboard from "./Keyboard";
 import {keysToNotesMap} from "../../data/keys";
 import { useEffect, useState } from "react";
+import './index.css';
 
 const Synth = (props) => {
     const {play, stopPlaying, notes, setNotes, onPitchShiftActive, onPitchShiftReleased} = props;
@@ -80,8 +81,10 @@ const Synth = (props) => {
 
     return (
         <>
-            <h1>Synth</h1>
-            <Keyboard keys={notes} handleMouseDown={handleMouseDown} handleMouseUp={handleMouseUp}/>
+            <div className="synth-container">
+                <h1>Mini Mono</h1>
+                <Keyboard keys={notes} handleMouseDown={handleMouseDown} handleMouseUp={handleMouseUp}/>
+            </div>
         </>
     )
 }
