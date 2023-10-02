@@ -6,14 +6,18 @@ var getGainNode = (ctx) => {
     }
 
 var setUpGainNodeEnvelope = (ctx, gainNode, adsr, amount) => {
-    const [attack, decay, sustain, release] = adsr;
+    const [attack, decay, sustain] = adsr;
     const now = ctx.currentTime;
     gainNode.gain.cancelScheduledValues(now);
     gainNode.gain.setValueAtTime(0, now);
     gainNode.gain.linearRampToValueAtTime(amount, now + attack);
-    gainNode.gain.linearRampToValueAtTime(sustain, now + decay);
-    gainNode.gain.linearRampToValueAtTime(0, now + release);
+    gainNode.gain.linearRampToValueAtTime(sustain, now + attack + decay);
     return gainNode;
 }
 
-    export { getGainNode, setUpGainNodeEnvelope };
+var handleRelease = (ctx, gainNode, release) => {
+    const now = ctx.currentTime
+    gainNode.gain.linearRampToValueAtTime(0, now + release)
+}
+
+export { getGainNode, setUpGainNodeEnvelope, handleRelease };

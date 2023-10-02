@@ -4,7 +4,8 @@ import {keysToNotesMap} from "../../data/keys";
 import { useEffect, useState } from "react";
 
 const Synth = (props) => {
-    const {play, stopPlaying, notes, setNotes} = props;
+    const {play, stopPlaying, notes, setNotes, onPitchShiftActive, onPitchShiftReleased} = props;
+    let pitchShift = false;
 
     useEffect(() => {
         document.addEventListener('keydown', handleKeyDown);
@@ -13,26 +14,38 @@ const Synth = (props) => {
             document.removeEventListener('keydown', handleKeyDown);
             document.removeEventListener('keyup', handleKeyUp);
         }
-    }, [])
+    }, [notes])
     
     const handleKeyDown = (e) => {
         if (e.key in keysToNotesMap){
             const noteID = keysToNotesMap[e.key];
             const key = notes.filter(keyboardKey => keyboardKey.id === noteID)[0];
+            if (key.isPressed) return;
             handleStartPlaying(key);
         }
+        else if (e.key === 'Shift') {
+            if (pitchShift) return;
+            else pitchShift = true;
+            e.preventDefault();
+            onPitchShiftActive()
+        }
     }
+
     const handleKeyUp = (e) => {
-        console.log(e.key)
         if (e.key in keysToNotesMap){
-            const note = keysToNotesMap[e.key];
-            handleStopPlaying(note);
+            const noteID = keysToNotesMap[e.key];
+            const key = notes.filter(keyboardKey => keyboardKey.id === noteID)[0];
+            handleStopPlaying(key);
+        }
+        else if (e.key === 'Shift') {
+            pitchShift = false;
+            e.preventDefault();
+            onPitchShiftReleased()
         }
     }
 
     const handleStartPlaying = (note) => {
             const {key, keyIndex} = getKeyAndIndex(note);
-            console.log(key)
             if (key.isPressed) return;
             setNotes((prevNotes) => {
                 const newNotes = [...prevNotes];
@@ -53,14 +66,8 @@ const Synth = (props) => {
     const getKeyAndIndex = (note) => {
         let keyIndex;
         let key;
-        const tmp = [...notes]
-        if (typeof(note) === 'string'){
-            keyIndex = tmp.findIndex((k) => k.id === note);
-            key = tmp[keyIndex];
-        } else {
-            keyIndex = notes.findIndex((k) => k.id === note.id);
-            key = notes[keyIndex];
-        }
+        keyIndex = notes.findIndex((k) => k.id === note.id);
+        key = notes[keyIndex];
         return {key, keyIndex};
     }
 

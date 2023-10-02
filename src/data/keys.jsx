@@ -101,6 +101,16 @@ function transpose(isUp, notes) {
     })
 }
 
+function resetTranspose(notes){
+    return notes.map((note) => {
+        const originalFreq = keys.filter((key) => key.id === note.id)[0].frequency
+        return {
+            ...note,
+            frequency: originalFreq
+        }
+    })
+}
+
 function changeOctave(isUp, notes) {
     return notes.map((key) => {
         return {
