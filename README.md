@@ -1,8 +1,14 @@
-# React + Vite
+# Web Synth
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A web development project, focused on studying Web Audio API (unfinished)
 
-Currently, two official plugins are available:
+# Main technologies:
+  - React.js
+  - Javascript
+  - Web Audio Api
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Main Features
+
+  - using the web audio api to generate and play oscillators based on user interaction
+  - filtering and shaping of the soundwaves
+  - note transposition
